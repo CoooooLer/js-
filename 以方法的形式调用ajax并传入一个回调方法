@@ -1,0 +1,26 @@
+fetchImage () {
+    var _this = this;
+    _this.books.forEach(function(book) {
+        if  (_this.reg.test(book.cover_url)) {
+            var ajaxHandler = _this.loadingBase64(book.cover_url, function(base64Data) {
+                book.cover_url = base64Data
+                book.done = true
+            })
+            _this.appendAjax.push(ajaxHandler)
+        } else {
+            book.done = true
+        }
+    })
+},
+loadingBase64 (url, cb) {
+    return $.ajax({
+        url: url,
+        dataType: 'text',
+        success: function(data, status) {
+            cb(data)
+        },
+        error: function(err) {
+            console.warn('获取资源失败：' + url)
+        }
+    })
+},
