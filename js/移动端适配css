@@ -1,0 +1,16 @@
+    <script>
+      (function (doc, win, designWidth) {
+          const html = doc.documentElement;
+          const refreshRem = () => {
+            const clientWidth = html.clientWidth;
+            if (clientWidth >= designWidth) {
+              html.style.fontSize = '100px';
+            } else {
+              html.style.fontSize = 100 * (clientWidth / designWidth) + 'px';
+            }
+          }
+          doc.addEventListener('DOMContentLoaded', refreshRem);
+      })(document, window, 750);
+    </script>
+    
+    *** 0.1rem = 10px
