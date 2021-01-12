@@ -1,0 +1,8 @@
+arr.forEach(v => this.inputObj[v] = '')
+
+
+ <template v-for="(val, key) in inputObj">
+      <el-form-item :label="key" :key="key">
+          <el-input v-model="inputObj[key]"></el-input>
+      </el-form-item>
+  </template>
